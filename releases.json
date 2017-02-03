@@ -1,10 +1,18 @@
 [
     {
         "version": "1.0.0",
-        "downloadUrl": "https://github.com/Newism/nsmrevvedurl/archive/master.zip",
+        "downloadUrl": "https://github.com/newism/craftcms-revved-url/archive/1.0.0.zip",
         "date": "2017-02-03T07:52:04.399Z",
         "notes": [
             "[Added] Initial release"
+        ]
+    },
+    {
+        "version": "1.0.1",
+        "downloadUrl": "https://github.com/newism/craftcms-revved-url/archive/1.0.1.zip",
+        "date": "2017-02-03T21:49:15+11:00",
+        "notes": [
+            "[Updated] Added server config info to README.md"
         ]
     }
 ]

@@ -71,7 +71,6 @@ See: https://github.com/h5bp/server-configs-nginx/blob/master/h5bp/location/cach
     }
 
 
-
 [<img src="http://newism.com.au/uploads/content/newism-logo.png" width="150px" />](http://newism.com.au/)
 
 Brought to you by [Leevi Graham](http://newism.com.au)
