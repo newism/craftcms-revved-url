@@ -22,8 +22,6 @@ Its simple… just call the function and pass the asset and an optional transfor
 
     nsm_rev_url(asset, transform)
 
-The function calls `asset.getUrl($transform)` internally and then replaces `$asset.extension` with `$asset.dateModified.timestamp . $asset.extension`. 
-
 Before revving:
 
     http://example.com/uploads/images/_572x430_crop_center-center_80/James-Ellis_elevation-render-1.jpg
@@ -45,5 +43,6 @@ public function revUrl(AssetFileModel $asset, $transform)
 }
 ```
 
+[![Newism](http://newism.com.au/uploads/content/newism-logo.png)](http://newism.com.au/)
 
 Brought to you by [Leevi Graham](http://newism.com.au)
