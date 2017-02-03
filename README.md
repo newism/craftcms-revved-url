@@ -43,6 +43,6 @@ public function revUrl(AssetFileModel $asset, $transform)
 }
 ```
 
-[!<img src="http://newism.com.au/uploads/content/newism-logo.png" width="150px" />](http://newism.com.au/)
+[<img src="http://newism.com.au/uploads/content/newism-logo.png" width="150px" />](http://newism.com.au/)
 
 Brought to you by [Leevi Graham](http://newism.com.au)
