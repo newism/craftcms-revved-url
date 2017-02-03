@@ -50,7 +50,7 @@ class NsmRevvedUrlPlugin extends BasePlugin
      */
     public function getName()
     {
-         return Craft::t('NSM Revved URL');
+         return Craft::t('Newism Revved URL');
     }
 
     /**
@@ -61,7 +61,7 @@ class NsmRevvedUrlPlugin extends BasePlugin
      */
     public function getDescription()
     {
-        return Craft::t('Rev asset urls');
+        return Craft::t('Rev asset urls with a timestamp');
     }
 
     /**
