@@ -1,5 +1,5 @@
 {
-	"name": "nsm/craftcms-revved-url",
+	"name": "newism/craftcms-revved-url",
 	"description": "Rev CraftCMS asset urls with date modified timestamps",
 	"type": "craft-plugin",
 	"authors": [
