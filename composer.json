@@ -1,0 +1,14 @@
+{
+	"name": "nsm/craftcms-revved-url",
+	"description": "Rev CraftCMS asset urls with date modified timestamps",
+	"type": "craft-plugin",
+	"authors": [
+		{
+			"name": "Leevi Graham",
+			"homepage": "http://newism.com.au"
+		}
+	],
+	"require": {
+		"composer/installers": "~1.0"
+	}
+}
