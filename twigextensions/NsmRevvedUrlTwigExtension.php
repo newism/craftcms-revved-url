@@ -66,7 +66,7 @@ class NsmRevvedUrlTwigExtension extends \Twig_Extension
      * @param $transform
      * @return mixed
      */
-    public function revUrl(AssetFileModel $asset, $transform)
+    public function revUrl(AssetFileModel $asset, $transform = null)
     {
         return str_replace(
             $asset->getExtension(),
