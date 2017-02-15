@@ -14,5 +14,13 @@
         "notes": [
             "[Updated] Added server config info to README.md"
         ]
+    },
+    {
+        "version": "1.0.2",
+        "downloadUrl": "https://github.com/newism/craftcms-revved-url/archive/1.0.2.zip",
+        "date": "2017-02-15T22:43:15+11:00",
+        "notes": [
+            "[Fixed] Added fallback if no transform is passed"
+        ]
     }
 ]
