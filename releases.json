@@ -22,5 +22,13 @@
         "notes": [
             "[Added] Added support for Imager: https://github.com/aelvan/Imager-Craft"
         ]
+    },
+    {
+        "version": "1.0.3",
+        "downloadUrl": "https://github.com/newism/craftcms-revved-url/archive/1.0.3.zip",
+        "date": "2017-03-14T15:12:00+11:00",
+        "notes": [
+            "[Added] Added support for Imager: https://github.com/aelvan/Imager-Craft"
+        ]
     }
 ]
