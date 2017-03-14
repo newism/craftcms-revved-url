@@ -1,5 +1,7 @@
 # NSM Revved URL plugin for Craft CMS
 
+This Twig function revs asset urls with the date modified timestamp
+
 ## Installation
 
 To install NSM Revved URL, follow these steps:
@@ -12,11 +14,9 @@ To install NSM Revved URL, follow these steps:
 
 NSM Revved URL works on Craft 2.4.x and Craft 2.5.x.
 
-## NSM Revved URL Overview
+## Usage
 
-This Twig function revs asset urls with the date modified timestamp
-
-## Using NSM Revved URL
+### Native Assets
 
 Its simple… just call the function and pass the asset and an optional transform
 
@@ -37,45 +37,21 @@ by wrapping the Imager plugin functions.
 
 #### Returned a revved URL
 
-    {{ nsm_rev_imager_url(newsImage, {
-         mode: 'crop',
-         width: 375,
-         height: 282,
-         quality: 75,
-         position: newsImage.focusPctX ~ '% ' ~ newsImage.focusPctY ~ '%'
-     }) }}
+    {{ nsm_rev_imager_url(newsImage, transform) }}
      
 #### Returned a revved Imager model
 
 Caution this replaces the original `url` property
 
-     {% set revvedImagerAsset = nsm_rev_imager_asset(newsImage, {
-          mode: 'crop',
-          width: 375,
-          height: 282,
-          quality: 75,
-          position: newsImage.focusPctX ~ '% ' ~ newsImage.focusPctY ~ '%'
-      }) }}
+    {% set revvedImagerAsset = nsm_rev_imager_asset(newsImage, transform) }}
       
-      {# output the revved URL #}
-      {{ revvedImagerAsset.url }}
+    {# output the revved URL #}
+    {{ revvedImagerAsset.url }}
 
 #### Returned a revved Imager model for use with `craft.imager.srcset()`
 
-{% set revvedImagerAsset = nsm_rev_imager_asset(newsImage, {
-          mode: 'crop',
-          width: 400,
-          ratio: '16/9',
-          position: newsImage.focusPctX ~ '% ' ~ newsImage.focusPctY ~ '%'
-      }, {
-           mode: 'crop',
-           width: 800,
-           ratio: '16/9',
-           position: newsImage.focusPctX ~ '% ' ~ newsImage.focusPctY ~ '%'
-       }) }}
-      
-      {# output the revved URL #}
-      {{ craft.imager.srcset(revvedImagerAsset) }}
+    {% set revvedImagerAsset = nsm_rev_imager_asset(newsImage, [transform1, transform2]) }}
+    {{ craft.imager.srcset(revvedImagerAsset) }}
 
 ## Updating your server config
 
