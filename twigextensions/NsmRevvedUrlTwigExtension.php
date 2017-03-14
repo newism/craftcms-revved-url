@@ -20,9 +20,6 @@
 
 namespace Craft;
 
-use Twig_Extension;
-use Twig_Filter_Method;
-
 class NsmRevvedUrlTwigExtension extends \Twig_Extension
 {
     /**
@@ -57,21 +54,107 @@ class NsmRevvedUrlTwigExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'nsm_rev_url' => new \Twig_Function_Method($this, 'revUrl'),
+            'nsm_rev_url' => new \Twig_Function_Method($this, 'revAssetUrl'),
+            'nsm_rev_asset' => new \Twig_Function_Method($this, 'revAsset'),
+            'nsm_rev_asset_url' => new \Twig_Function_Method($this, 'revAssetUrl'),
+            'nsm_rev_imager_asset' => new \Twig_Function_Method($this, 'revImagerAsset'),
+            'nsm_rev_imager_url' => new \Twig_Function_Method($this, 'revImagerUrl'),
         );
     }
 
     /**
      * @param AssetFileModel $asset
-     * @param $transform
+     * @param null $transform
      * @return mixed
      */
-    public function revUrl(AssetFileModel $asset, $transform = null)
+    public function revAssetUrl(AssetFileModel $asset, $transform = null)
     {
-        return str_replace(
-            $asset->getExtension(),
-            $asset->dateModified->getTimestamp().'.'.$asset->getExtension(),
-            $asset->getUrl($transform)
+        $revvedUrl = $this->addTimeStamp(
+            $asset->dateModified->getTimestamp(),
+            $asset->getUrl($transform),
+            $asset->getExtension()
         );
+
+        return $revvedUrl;
+    }
+
+    /**
+     * @param AssetFileModel $asset
+     * @param $transform
+     * @param null $transformDefaults
+     * @param null $configOverrides
+     * @return mixed
+     */
+    public function revImagerAsset(
+        AssetFileModel $asset,
+        $transform,
+        $transformDefaults = null,
+        $configOverrides = null
+    ) {
+        $images = craft()->imager->transformImage(
+            $asset,
+            $transform,
+            $transformDefaults,
+            $configOverrides
+        );
+
+        if(is_array($images)) {
+            foreach($images as $image) {
+                $image->url = $this->addTimeStamp(
+                    $asset->dateModified->getTimestamp(),
+                    $image->getUrl(),
+                    $image->getExtension()
+                );
+            }
+        } else {
+            $images->url = $this->addTimeStamp(
+                $asset->dateModified->getTimestamp(),
+                $images->getUrl(),
+                $images->getExtension()
+            );
+        }
+
+        return $images;
+    }
+
+    /**
+     * @param AssetFileModel $asset
+     * @param $transform
+     * @param null $transformDefaults
+     * @param null $configOverrides
+     * @return mixed
+     */
+    public function revImagerUrl(
+        AssetFileModel $asset,
+        $transform,
+        $transformDefaults = null,
+        $configOverrides = null
+    ) {
+        /** @var Imager_ImageModel $image */
+        $image = craft()->imager->transformImage(
+            $asset,
+            $transform,
+            $transformDefaults,
+            $configOverrides
+        );
+
+        $revvedUrl = $this->addTimeStamp(
+            $asset->dateModified->getTimestamp(),
+            $image->getUrl(),
+            $image->getExtension()
+        );
+
+        return $revvedUrl;
+    }
+
+    /**
+     * @param $timestamp
+     * @param $url
+     * @param $extension
+     * @return mixed
+     */
+    private function addTimeStamp($timestamp, $url, $extension)
+    {
+        return str_replace($extension, $timestamp.'.'.$extension, $url);
     }
 }
