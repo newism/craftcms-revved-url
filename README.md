@@ -20,7 +20,7 @@ This Twig function revs asset urls with the date modified timestamp
 
 Its simple… just call the function and pass the asset and an optional transform
 
-    nsm_rev_url(asset, transform)
+    nsm_rev_asset_url(asset, transform)
 
 Before revving:
 
@@ -30,7 +30,54 @@ After revving:
 
     http://example.com/uploads/images/_572x430_crop_center-center_80/James-Ellis_elevation-render-1.1485302752.jpg
 
-### Updating your server config
+### Imager Support
+
+NSM Revved URL supports [Imager](https://github.com/aelvan/Imager-Craft) transforms and `craft.imager.srcset()` 
+by wrapping the Imager plugin functions. 
+
+#### Returned a revved URL
+
+    {{ nsm_rev_imager_url(newsImage, {
+         mode: 'crop',
+         width: 375,
+         height: 282,
+         quality: 75,
+         position: newsImage.focusPctX ~ '% ' ~ newsImage.focusPctY ~ '%'
+     }) }}
+     
+#### Returned a revved Imager model
+
+Caution this replaces the original `url` property
+
+     {% set revvedImagerAsset = nsm_rev_imager_asset(newsImage, {
+          mode: 'crop',
+          width: 375,
+          height: 282,
+          quality: 75,
+          position: newsImage.focusPctX ~ '% ' ~ newsImage.focusPctY ~ '%'
+      }) }}
+      
+      {# output the revved URL #}
+      {{ revvedImagerAsset.url }}
+
+#### Returned a revved Imager model for use with `craft.imager.srcset()`
+
+{% set revvedImagerAsset = nsm_rev_imager_asset(newsImage, {
+          mode: 'crop',
+          width: 400,
+          ratio: '16/9',
+          position: newsImage.focusPctX ~ '% ' ~ newsImage.focusPctY ~ '%'
+      }, {
+           mode: 'crop',
+           width: 800,
+           ratio: '16/9',
+           position: newsImage.focusPctX ~ '% ' ~ newsImage.focusPctY ~ '%'
+       }) }}
+      
+      {# output the revved URL #}
+      {{ craft.imager.srcset(revvedImagerAsset) }}
+
+## Updating your server config
 
 This plugin doesn't actually change the the filename on the server. You'll need to implement rewrite rules on your server.
 
